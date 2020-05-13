@@ -21,7 +21,18 @@
   Add Server
 </button>
 <hr />
-<p>{{ serverCreationStatus }}</p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+<p class="text-center" *ngIf="serverCreated">
+  {{ serverCreationStatus }}
+</p>
+<!-- <p class="text-center" *ngIf="serverCreated; else noserver">
+  {{ serverCreationStatus }}
+</p>
+<ng-template #noserver>
+  <p class="text-center">
+    Waiting to create server.
+  </p>
+</ng-template> -->
 <hr />
 <app-server></app-server>
 <app-server></app-server>
