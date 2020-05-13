@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <button type="button" class="btn btn-primary" (click)="onToggleDisplay()">
+        Toggle Display
+      </button>
+      <hr />
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="displayParagraph">
+    <div class="col-6">
+      <p>
+        This paragraph gets displayed or hidden whenever the button above is
+        clicked
+      </p>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <hr />
+      <p>Log of all clicks:</p>
+      <hr />
+    </div>
+  </div>
+
+  <div
+    class="row justify-content-center"
+    *ngFor="let clickLog of clickLogs; index as i"
+  >
+    <div class="col-6">
+      <p
+        [ngStyle]="{ backgroundColor: i >= 4 ? 'blue' : '' }"
+        [ngClass]="{ logColor: i >= 4 }"
+      >
+        {{ clickLog }}
+      </p>
+    </div>
+  </div>
+</div>
