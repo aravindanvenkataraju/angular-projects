@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="userName">User Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="userName"
+          id=""
+          aria-describedby="helpId"
+          placeholder=""
+          [(ngModel)]="userName"
+        />
+        <small id="helpId" class="form-text text-muted">{{ userName }}</small>
+      </div>
+      <button
+        type="button"
+        class="btn btn-primary"
+        [disabled]="userName === ''"
+        (click)="onResetUserName()"
+      >
+        Reset User Name
+      </button>
+    </div>
+  </div>
+</div>
