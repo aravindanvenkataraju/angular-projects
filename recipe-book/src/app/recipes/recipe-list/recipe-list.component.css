@@ -1,3 +1,6 @@
 .recipe-button-color {
   background-color: slateblue;
 }
+button:hover {
+  background-color: rgb(45, 45, 120);
+}
