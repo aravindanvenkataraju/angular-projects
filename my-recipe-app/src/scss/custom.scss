@@ -1,0 +1,21 @@
+// Custom.scss
+
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions";
+
+// 2. Include any default variable overrides here
+// Default variable overrides
+$min-contrast-ratio: 3;
+$primary: #f69123;
+$info: #6f5751;
+$success: #7fa643;
+$warning: #fc960b;
+$danger: #f44336;
+$dark: #6f5751;
+$light: #f6f9f7;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+
+// 5. Add additional custom code here
