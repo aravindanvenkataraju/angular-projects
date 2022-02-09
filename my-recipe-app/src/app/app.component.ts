@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'my-recipe-app';
+  title: string = 'my-recipe-app';
+  currentPage: string = 'recipes';
+  onNavigationClicked(navigation: string){
+    this.currentPage = navigation;
+  }
 }
