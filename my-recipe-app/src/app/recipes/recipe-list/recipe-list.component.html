@@ -7,20 +7,6 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <a href="#" class="list-group-item list-group-item-action clearfix bg-light" *ngFor=" let recipe of recipes">
-            <div class="float-start ">
-                <div class="d-flex w-100 justify-content-between ">
-                    <h5 class="mb-1">{{recipe.name}}</h5>
-                </div>
-                <p class="mb-1">{{recipe.description}}</p>
-                <!-- <small>And some small print.</small> -->
-            </div>
-            <div class="float-end">
-                <img [src]="recipe.imagePath"
-                    alt="potato croquettes" class="img-thumbnail img-fluid" style="max-height: 50px;">
-            </div>
-            
-        </a>
+        <app-recipe-item *ngFor=" let recipe of recipes" [recipe-item] = "recipe" (onRecipeSelected)="recipeSelected(recipe)"></app-recipe-item>
     </div>
 </div>
-<app-recipe-item></app-recipe-item>

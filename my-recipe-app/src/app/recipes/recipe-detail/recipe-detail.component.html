@@ -1,12 +1,12 @@
 <div class="row p-1">
     <div class="col-12 ">
-        <img src="https://picturetherecipe.com/wp-content/uploads/2018/06/Indian-Style-Chicken-Cutlets-PictureTheRecipe.jpg"
-                    alt="potato croquettes" class="img-fluid rounded">
+        <img src="{{recipe.imagePath}}"
+                    alt={{recipe.name}} class="img-fluid rounded">
     </div>
 </div>
 <div class="row p-1">
     <div class="col-12 ">
-        <h1>Recipe Name</h1>
+        <h1>{{recipe.name}}</h1>
     </div>
 </div>
 <div class="row p-1">
@@ -25,7 +25,7 @@
 </div>
 <div class="row p-1">
     <div class="col-12 ">
-        Description
+        {{recipe.description}}
     </div>
 </div>
 <div class="row p-1">
