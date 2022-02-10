@@ -1,31 +1,31 @@
 <div class="row p-1">
     <div class="col-12 ">
-        <img src="{{recipe&&recipe.imagePath}}"
-                    alt={{recipe&&recipe.name}} class="img-fluid rounded">
+        <img [src]="recipe.imagePath" 
+                    [alt]="recipe.name" class="img-fluid rounded">
     </div>
 </div>
 <div class="row p-1">
     <div class="col-12 ">
-        <h1 >{{recipe&&recipe.name}}</h1>
+        <h1 >{{recipe.name}}</h1>
     </div>
 </div>
 <div class="row p-1">
     <div class="col-12 ">
         <div class="btn-group" role="group">
-            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle text-white" data-bs-toggle="dropdown" aria-expanded="false">
+            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
               Manage Recipe
             </button>
-            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <li><a class="dropdown-item" href="#">To Shopping List</a></li>
-              <li><a class="dropdown-item" href="#">Edit Recipe</a></li>
-              <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
+            <ul class="dropdown-menu bg-light" aria-labelledby="btnGroupDrop1">
+              <li><a class="dropdown-item text-dark" href="#">To Shopping List</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Edit Recipe</a></li>
+              <li><a class="dropdown-item text-dark" href="#">Delete Recipe</a></li>
             </ul>
           </div>
     </div>
 </div>
 <div class="row p-1">
     <div class="col-12 ">
-        {{recipe&&recipe.description}}
+        {{recipe.description}}
     </div>
 </div>
 <div class="row p-1">
