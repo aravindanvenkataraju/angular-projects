@@ -7,10 +7,10 @@
 	<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 		<ul class="navbar-nav">
 			<li class="nav-item">
-				<a href="#" class="nav-link" [ngClass]= "{'active': currentPage==='recipes'}"  (click)="onNavigate('recipes')" [attr.aria-current]="currentPage==='recipes'?'page':''">Recipes</a>
+				<a href="#" class="nav-link" [ngClass]= "{'active': currentPage==='recipes'}"  (click)="onNavigate('recipes')">Recipes</a>
 			</li>
 			<li class="nav-item">
-				<a href="#" class="nav-link" [ngClass]= "{'active': currentPage==='shopping-list'}" (click)="onNavigate('shopping-list')" [attr.aria-current]="currentPage==='shopping-list'?'page':''">Shopping List</a>
+				<a href="#" class="nav-link" [ngClass]= "{'active': currentPage==='shopping-list'}" (click)="onNavigate('shopping-list')" >Shopping List</a>
 			</li>
 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
