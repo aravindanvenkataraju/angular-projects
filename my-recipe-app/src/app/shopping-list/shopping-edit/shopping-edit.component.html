@@ -4,26 +4,26 @@
             <div class="row">
                 <div class="col-10">
                     <label for="ingredientName" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="ingredientName">
+                    <input type="text" class="form-control" id="ingredientName" #ingredientNameInput>
                 </div>
                 <div class="col-2">
                     <label for="ingredientAmount" class="form-label">Amount</label>
-                    <input type="number" class="form-control" id="ingredientAmount">
+                    <input type="number" class="form-control" id="ingredientAmount" #ingredientAmountInput>
                 </div>
             </div>
             <div class="row pt-1 d-flex justify-content-between">
                 <div class="col d-flex justify-content-center">
-                    <button class="btn btn-success  text-light">
+                    <button class="btn btn-success text-light" type="submit" (click)="onAddIngredient()">
                         Add
                     </button>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button class="btn btn-danger text-light">
+                    <button class="btn btn-danger text-light" type="button">
                         Delete
                     </button>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <button class="btn btn-warning text-light">
+                    <button class="btn btn-warning text-light" type="button">
                         Clear
                     </button>
                 </div>
