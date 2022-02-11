@@ -7,7 +7,7 @@
         style="cursor: pointer;"
         [routerLink]="['/servers', server.id]"
         [routerLinkActiveOptions]="{exact: true}"
-        [queryParams] = "{'allowEdit': 'true'}"
+        [queryParams] = "{'allowEdit': server.id===3?'true':'false'}"
         fragment="loading">
         {{ server.name }}
       </a>
