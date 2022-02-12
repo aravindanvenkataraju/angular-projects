@@ -1,14 +1,25 @@
-<a href="#" class="list-group-item list-group-item-action clearfix bg-light" (click)="recipeSelected()">
-    <div class="float-start col-10 text-truncate d-inline-block">
-        <div class="d-flex w-100 justify-content-between ">
-            <h5 class="mb-1">{{recipe.name}}</h5>
-        </div>
-        <p class="mb-1 ">{{recipe.description}}</p>
-        <!-- <small>And some small print.</small> -->
+<a
+  class="list-group-item list-group-item-action clearfix text-dark"
+  [routerLink]="[idx]"
+  routerLinkActive="active"
+  style="cursor: pointer"
+>
+  <div
+    class="float-start col-10 text-truncate d-inline-block"
+    routerLinkActive="active"
+  >
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ recipe.name }}</h5>
     </div>
-    <div class="float-end">
-        <img [src]="recipe.imagePath"
-            alt="potato croquettes" class="img-thumbnail img-fluid" style="max-height: 50px;">
-    </div>
-    
+    <p class="mb-1">{{ recipe.description }}</p>
+    <!-- <small>And some small print.</small> -->
+  </div>
+  <div class="float-end">
+    <img
+      [src]="recipe.imagePath"
+      alt="potato croquettes"
+      class="img-thumbnail img-fluid"
+      style="max-height: 50px"
+    />
+  </div>
 </a>
