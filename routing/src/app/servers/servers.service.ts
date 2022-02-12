@@ -19,7 +19,6 @@ export class ServersService {
       status: "offline",
     },
   ];
-
   getServers() {
     return this.servers;
   }
