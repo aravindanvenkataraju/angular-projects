@@ -23,7 +23,8 @@ const appRoutes: Routes = [
       { path: ":id", component: ServerComponent },
       { path: ":id/edit", component: EditServerComponent },
     ],
-    canActivate: [AuthGuardService],
+    // canActivate: [AuthGuardService],
+    canActivateChild: [AuthGuardService],
   },
   {
     path: "not-found",
