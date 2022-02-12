@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { interval, Observable, Subscription } from "rxjs";
+import { interval, Observable, Subscriber, Subscription } from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -25,11 +25,25 @@ export class HomeComponent implements OnInit, OnDestroy {
       let count = 0;
       setInterval(() => {
         subsrciber.next(count++);
+        if (count > 6) {
+          subsrciber.error(new Error("Observable hit an error!"));
+        }
+        if (count > 4) {
+          subsrciber.complete();
+        }
       }, 1000);
     });
 
-    this.customObsSub = customObservable.subscribe((count) => {
-      console.log("log from subscriber: ", count);
-    });
+    this.customObsSub = customObservable.subscribe(
+      (count) => {
+        console.log("log from subscriber: ", count);
+      },
+      (error) => {
+        alert("error occured: " + error.message);
+      },
+      () => {
+        console.log("observable work is complete");
+      }
+    );
   }
 }
