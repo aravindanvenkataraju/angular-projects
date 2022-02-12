@@ -14,6 +14,7 @@ import { DropdownDirective } from './directives/dropdown.directive';
 import { AppRoutingModule } from './app.routing.module';
 import { NoRecipesComponent } from './components/recipes/no-recipes/no-recipes.component';
 import { DisplayErrorComponent } from './components/display-error/display-error.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DisplayErrorComponent } from './components/display-error/display-error.
     DropdownDirective,
     NoRecipesComponent,
     DisplayErrorComponent,
+    RecipeEditComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
