@@ -1,5 +1,12 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { interval, Observable, Subscriber, Subscription } from "rxjs";
+import {
+  filter,
+  interval,
+  map,
+  Observable,
+  Subscriber,
+  Subscription,
+} from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -25,25 +32,32 @@ export class HomeComponent implements OnInit, OnDestroy {
       let count = 0;
       setInterval(() => {
         subsrciber.next(count++);
-        if (count > 6) {
+        if (count > 20) {
           subsrciber.error(new Error("Observable hit an error!"));
         }
-        if (count > 4) {
+        if (count > 10) {
           subsrciber.complete();
         }
       }, 1000);
     });
 
-    this.customObsSub = customObservable.subscribe(
-      (count) => {
-        console.log("log from subscriber: ", count);
+    const pipedObservable = customObservable.pipe(
+      filter((data: number) => data % 2 == 0),
+      map((data, index) => {
+        return "observable returned " + data + " at index " + index;
+      })
+    );
+
+    this.customObsSub = pipedObservable.subscribe({
+      next: (data) => {
+        console.log("log from subscriber: ", data);
       },
-      (error) => {
+      error: (error) => {
         alert("error occured: " + error.message);
       },
-      () => {
+      complete: () => {
         console.log("observable work is complete");
-      }
-    );
+      },
+    });
   }
 }
