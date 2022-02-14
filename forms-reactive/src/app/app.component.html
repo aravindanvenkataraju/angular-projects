@@ -12,6 +12,15 @@
         class="form-control"
         formControlName="username"
       />
+      <div
+        class="form-text"
+        *ngIf="
+          signupForm.get('username').invalid &&
+          signupForm.get('username').touched
+        "
+      >
+        User name cannot be empty
+      </div>
     </div>
     <div class="col-12">
       <label for="email" class="form-label">Mail</label>
@@ -21,6 +30,14 @@
         class="form-control"
         formControlName="email"
       />
+      <div
+        class="form-text"
+        *ngIf="
+          signupForm.get('email').invalid && signupForm.get('email').touched
+        "
+      >
+        Email Address name cannot be empty
+      </div>
     </div>
     <div class="col-12">
       <div class="form-check" *ngFor="let gender of genders; let i = index">
