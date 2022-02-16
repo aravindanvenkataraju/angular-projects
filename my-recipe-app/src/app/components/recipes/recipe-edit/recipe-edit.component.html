@@ -1,74 +1,83 @@
-<div class="row mb-1">
-  <div class="col">
-    <button class="btn btn-success m-1 text-light" type="submit">Save</button>
-    <button class="btn btn-danger m-1" type="button">Cancel</button>
+<form [formGroup]="recipeForm" (ngSubmit)="submitForm()">
+  <div class="row mb-1">
+    <div class="col">
+      <button class="btn btn-success m-1 text-light" type="submit">Save</button>
+      <button class="btn btn-danger m-1" type="button">Cancel</button>
+    </div>
   </div>
-</div>
-<div class="row mb-1">
-  <div class="col">
-    <label for="recipeNameInput" class="form-label">Recipe Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="recipeNameInput"
-      placeholder="Enter Recipe Name here...."
-    />
+  <div class="row mb-1">
+    <div class="col">
+      <label for="recipeNameInput" class="form-label">Recipe Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="recipeNameInput"
+        formControlName="name"
+        placeholder="Enter Recipe Name here...."
+      />
+    </div>
   </div>
-</div>
-<div class="row mb-1">
-  <div class="col">
-    <label for="imagePathInput" class="form-label">Image URL</label>
-    <input
-      type="text"
-      class="form-control"
-      id="imagePathInput"
-      placeholder="https://yourimage.url"
-    />
+  <div class="row mb-1">
+    <div class="col">
+      <label for="imagePathInput" class="form-label">Image URL</label>
+      <input
+        type="text"
+        class="form-control"
+        id="imagePathInput"
+        formControlName="imagePath"
+        placeholder="https://yourimage.url"
+      />
+    </div>
   </div>
-</div>
-<div class="row mb-1">
-  <div class="row">
-    <label class="form-label">Image Preview</label>
-  </div>
-  <div class="row">
-    <img src="#" class="img-fluid rounded" />
-  </div>
-</div>
-<div class="row mb-1">
-  <div class="col">
-    <label for="recipeDescriptionInput" class="form-label"
-      >Recipe Description</label
-    >
-    <textarea
-      type="text"
-      class="form-control"
-      id="recipeDescriptionInput"
-      placeholder="What is this recipe?"
-      rows="6"
-    ></textarea>
-  </div>
-</div>
-<div class="row mb-1">
-  <div class="col">
+  <div class="row mb-1">
     <div class="row">
-      <div class="col-8">
-        <label for="ingredientNameInput" class="form-label"
-          >Ingredient Name</label
-        >
-        <input
-          type="text"
-          class="form-control"
-          id="ingredientNameInput"
-          placeholder="Enter Ingredient Name here...."
-        />
-      </div>
-      <div class="col-2">
-        <label for="ingredientAmountInput" class="form-label">Amount</label>
-        <input type="number" class="form-control" id="ingredientAmountInput" />
-      </div>
-      <div class="col-2 d-flex">
-        <button class="btn btn-danger align-bottom mb-0 my-auto">X</button>
+      <label class="form-label">Image Preview</label>
+    </div>
+    <div class="row">
+      <img src="#" class="img-fluid rounded" />
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col">
+      <label for="recipeDescriptionInput" class="form-label"
+        >Recipe Description</label
+      >
+      <textarea
+        type="text"
+        class="form-control"
+        id="recipeDescriptionInput"
+        formControlName="description"
+        placeholder="What is this recipe?"
+        rows="6"
+      ></textarea>
+    </div>
+  </div>
+  <div class="row mb-1">
+    <div class="col">
+      <div class="row">
+        <div class="col-8">
+          <label for="ingredientNameInput" class="form-label"
+            >Ingredient Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="ingredientNameInput"
+            placeholder="Enter Ingredient Name here...."
+          />
+        </div>
+        <div class="col-2">
+          <label for="ingredientAmountInput" class="form-label">Amount</label>
+          <input
+            type="number"
+            class="form-control"
+            id="ingredientAmountInput"
+          />
+        </div>
+        <div class="col-2 d-flex">
+          <button class="btn btn-danger align-bottom mb-0 my-auto">X</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</form>
