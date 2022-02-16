@@ -52,30 +52,40 @@
       ></textarea>
     </div>
   </div>
-  <div class="row mb-1">
+  <div class="row mb-1" formArrayName="ingredients">
     <div class="col">
       <div class="row">
         <div class="col-8">
-          <label for="ingredientNameInput" class="form-label"
-            >Ingredient Name</label
-          >
+          <label class="form-label">Ingredient Name</label>
+        </div>
+        <div class="col-2">
+          <label class="form-label">Amount</label>
+        </div>
+      </div>
+      <div
+        class="row mb-1"
+        *ngFor="let ingredient of ingredientControls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="col-8">
           <input
             type="text"
             class="form-control"
             id="ingredientNameInput"
+            formControlName="name"
             placeholder="Enter Ingredient Name here...."
           />
         </div>
         <div class="col-2">
-          <label for="ingredientAmountInput" class="form-label">Amount</label>
           <input
             type="number"
             class="form-control"
+            formControlName="amount"
             id="ingredientAmountInput"
           />
         </div>
-        <div class="col-2 d-flex">
-          <button class="btn btn-danger align-bottom mb-0 my-auto">X</button>
+        <div class="col-2">
+          <button class="btn btn-danger" type="button">X</button>
         </div>
       </div>
     </div>
