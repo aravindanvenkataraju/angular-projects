@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import {
   EmailValidator,
   FormControl,
@@ -12,20 +12,24 @@ import { Observable } from "rxjs";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
-  projectForm: FormGroup = new FormGroup({
-    projectname: new FormControl(
-      null,
-      [
-        Validators.required,
-        //this.projectNameInvalid.bind(this), //synchronous validation
-      ],
-      [this.asyncProjectNameInvalid.bind(this)] //asynchronous validation
-    ),
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    projectstatus: new FormControl("-1"),
-  });
+export class AppComponent implements OnInit {
+  projectForm: FormGroup;
   projectStatus: string[] = ["Stable", "Critical", "Finished"];
+
+  ngOnInit(): void {
+    this.projectForm = new FormGroup({
+      projectname: new FormControl(
+        null,
+        [
+          Validators.required,
+          //this.projectNameInvalid.bind(this), //synchronous validation
+        ],
+        [this.asyncProjectNameInvalid.bind(this)] //asynchronous validation
+      ),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      projectstatus: new FormControl("-1"),
+    });
+  }
 
   submitForm() {
     console.log(this.projectForm.value);
