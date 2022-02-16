@@ -1,0 +1,100 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <!--
+          Create a Form with the following Controls and Validators
+          1) Project Name (should not be empty)
+          2) Mail (should not be a empty and a valid email)
+          3) Project Status Dropdown, with three values: 'Stable', 'Critical', 'Finished'
+          4) Submit Button
+
+          Add your own Validator which doesn't allow "Test" as a Project Name
+
+          Also implement that Validator as an async Validator (replace the other one)
+
+          Upon submitting the form, simply print the value to the console
+      -->
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <form [formGroup]="projectForm" (ngSubmit)="submitForm()">
+    <div class="mb-3">
+      <label for="projectNameInput" class="form-label">Project Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="projectNameInput"
+        placeholder="Project Name"
+        formControlName="projectname"
+      />
+      <span
+        class="form-text errorText"
+        *ngIf="
+          projectForm.get('projectname').touched &&
+          projectForm.get('projectname').errors?.required
+        "
+      >
+        Project name is required.</span
+      >
+      <span
+        class="form-text errorText"
+        *ngIf="
+          projectForm.get('projectname').touched &&
+          projectForm.get('projectname').errors?.projectNameInvalid
+        "
+      >
+        Project name cannot be 'Test'.</span
+      >
+    </div>
+    <div class="mb-3">
+      <label for="emailInput" class="form-label">Email Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="emailInput"
+        placeholder="Email address"
+        formControlName="email"
+      />
+      <span
+        class="form-text errorText"
+        *ngIf="
+          projectForm.get('email').touched &&
+          projectForm.get('email').errors?.required
+        "
+      >
+        Email address is required.</span
+      >
+      <span
+        class="form-text errorText"
+        *ngIf="
+          projectForm.get('email').touched &&
+          projectForm.get('email').errors?.email
+        "
+      >
+        Email address should be a valid email format.</span
+      >
+    </div>
+    <div class="mb-3">
+      <label for="projectStatusSelect" class="form-label">Project Status</label>
+      <select
+        class="form-select"
+        id="projectStatusSelect"
+        formControlName="projectstatus"
+      >
+        <option value="-1" disabled selected>Please select...</option>
+        <option
+          *ngFor="let status of projectStatus; let i = index"
+          [id]="'projectStatusSelect' + i"
+          [value]="i"
+        >
+          {{ status }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
