@@ -1,7 +1,13 @@
 <form [formGroup]="recipeForm" (ngSubmit)="submitForm()">
   <div class="row mb-1">
     <div class="col">
-      <button class="btn btn-success m-1 text-light" type="submit">Save</button>
+      <button
+        class="btn btn-success m-1 text-light"
+        type="submit"
+        [disabled]="recipeForm.invalid"
+      >
+        Save
+      </button>
       <button class="btn btn-danger m-1" type="button">Cancel</button>
     </div>
   </div>
@@ -54,12 +60,21 @@
   </div>
   <div class="row mb-1" formArrayName="ingredients">
     <div class="col">
-      <div class="row">
+      <div class="row mb-1">
         <div class="col-8">
           <label class="form-label">Ingredient Name</label>
         </div>
         <div class="col-2">
           <label class="form-label">Amount</label>
+        </div>
+        <div class="col-2">
+          <button
+            class="btn btn-success text-light"
+            type="button"
+            (click)="addIndredientControls()"
+          >
+            +
+          </button>
         </div>
       </div>
       <div

@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 
@@ -64,11 +65,22 @@ export class RecipeService {
     ),
   ];
 
+  recipeChanged: Subject<Recipe> = new Subject();
   getRecipes() {
     return this.recipes.slice();
   }
 
   getRecipeAtIndex(idx: number) {
     return this.recipes[idx];
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+    this.recipeChanged.next(recipe);
+  }
+
+  updateRecipeAtIndex(index: number, recipe: Recipe) {
+    this.recipes[index] = recipe;
+    this.recipeChanged.next(recipe);
   }
 }
