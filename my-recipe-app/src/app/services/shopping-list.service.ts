@@ -13,7 +13,7 @@ export class ShoppingListService {
   ];
 
   ingredientAdded: Subject<Ingredient | null> = new Subject();
-
+  editingIngredient: Subject<number> = new Subject();
   getIngredients() {
     return this.ingredients.slice();
   }
@@ -26,5 +26,14 @@ export class ShoppingListService {
   addIngredients(ingredients: Ingredient[]) {
     this.ingredients = this.ingredients.concat(ingredients);
     this.ingredientAdded.next(null);
+  }
+
+  getIngredientAtIndex(index: number) {
+    return this.ingredients[index];
+  }
+
+  updateIngredientAtIndex(index: number, ingredient: Ingredient) {
+    this.ingredients[index] = ingredient;
+    this.ingredientAdded.next(ingredient);
   }
 }

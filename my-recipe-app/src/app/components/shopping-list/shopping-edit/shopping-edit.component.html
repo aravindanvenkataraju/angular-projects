@@ -33,7 +33,7 @@
             type="submit"
             [disabled]="shoppingEditForm.invalid"
           >
-            Add
+            {{ newIngredient ? "Add" : "Save" }}
           </button>
         </div>
         <div class="col d-flex justify-content-center">

@@ -1,5 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/models/ingredient.model';
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 
@@ -8,15 +15,49 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css'],
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
+  @ViewChild('shoppingEditForm', { static: false }) shoppingEditForm: NgForm;
+  editingIngredientSubscription: Subscription;
+  editingIngredientIndex: number;
+  editingIngredient: Ingredient;
+  newIngredient: boolean = true;
   constructor(private shoppingListService: ShoppingListService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.editingIngredientSubscription =
+      this.shoppingListService.editingIngredient.subscribe(
+        (ingredientIndex: number) => {
+          this.editingIngredientIndex = ingredientIndex;
+          this.newIngredient = false;
+          this.editingIngredient =
+            this.shoppingListService.getIngredientAtIndex(ingredientIndex);
+          this.shoppingEditForm.setValue({
+            ingredientName: this.editingIngredient.name,
+            ingredientAmount: this.editingIngredient.amount,
+          });
+        }
+      );
+  }
+
+  ngOnDestroy(): void {
+    this.shoppingListService.editingIngredient.unsubscribe();
+  }
 
   submitForm(shoppingEditForm: NgForm) {
     const formValue = shoppingEditForm.value;
-    this.shoppingListService.addIngredient(
-      new Ingredient(formValue.ingredientName, formValue.ingredientAmount)
+    const newIngredient = new Ingredient(
+      formValue.ingredientName,
+      formValue.ingredientAmount
     );
+    if (this.newIngredient) {
+      this.shoppingListService.addIngredient(newIngredient);
+    } else {
+      this.shoppingListService.updateIngredientAtIndex(
+        this.editingIngredientIndex,
+        newIngredient
+      );
+    }
+    this.newIngredient = true;
+    shoppingEditForm.reset();
   }
 }
