@@ -15,11 +15,17 @@
       <div
         class="form-text"
         *ngIf="
-          signupForm.get('username').invalid &&
+          signupForm.get('username').errors?.['required'] &&
           signupForm.get('username').touched
         "
       >
         User name cannot be empty
+      </div>
+      <div
+        class="form-text"
+        *ngIf="signupForm.get('username').errors?.['nameForbidden']"
+      >
+        this user name cannot be used
       </div>
     </div>
     <div class="col-12">
@@ -53,6 +59,16 @@
           {{ gender }}
         </label>
       </div>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="addHobby()">
+      Add Hobby
+    </button>
+    <div
+      class="col-12"
+      *ngFor="let hobby of hobbies; let i = index"
+      formArrayName="hobbies"
+    >
+      <input type="text" class="form-control" [formControlName]="i" />
     </div>
     <div class="col-12">
       <button class="btn btn-primary" type="submit">Submit</button>
