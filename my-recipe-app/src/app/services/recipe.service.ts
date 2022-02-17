@@ -1,8 +1,9 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 
+@Injectable({ providedIn: 'root' })
 export class RecipeService {
   private recipes: Recipe[] = [
     new Recipe(
@@ -74,13 +75,20 @@ export class RecipeService {
     return this.recipes[idx];
   }
 
-  addRecipe(recipe: Recipe) {
+  addRecipe(recipe: Recipe): number {
     this.recipes.push(recipe);
     this.recipeChanged.next(recipe);
+    return this.recipes.length - 1;
   }
 
   updateRecipeAtIndex(index: number, recipe: Recipe) {
+    console.log(recipe);
     this.recipes[index] = recipe;
     this.recipeChanged.next(recipe);
+  }
+
+  deleteRecipeAtIndex(index: number) {
+    this.recipes.splice(index, 1);
+    this.recipeChanged.next(null);
   }
 }

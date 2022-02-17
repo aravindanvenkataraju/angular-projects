@@ -8,7 +8,13 @@
       >
         Save
       </button>
-      <button class="btn btn-danger m-1" type="button">Cancel</button>
+      <button
+        class="btn btn-danger m-1"
+        type="button"
+        (click)="cancelChanges()"
+      >
+        Cancel
+      </button>
     </div>
   </div>
   <div class="row mb-1">
@@ -32,6 +38,7 @@
         id="imagePathInput"
         formControlName="imagePath"
         placeholder="https://yourimage.url"
+        #imagePath
       />
     </div>
   </div>
@@ -40,7 +47,7 @@
       <label class="form-label">Image Preview</label>
     </div>
     <div class="row">
-      <img src="#" class="img-fluid rounded" />
+      <img [src]="imagePath.value" class="img-fluid rounded" />
     </div>
   </div>
   <div class="row mb-1">
@@ -100,7 +107,13 @@
           />
         </div>
         <div class="col-2">
-          <button class="btn btn-danger" type="button">X</button>
+          <button
+            class="btn btn-danger"
+            type="button"
+            (click)="deleteIngredient(i)"
+          >
+            X
+          </button>
         </div>
       </div>
     </div>

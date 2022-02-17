@@ -40,7 +40,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.shoppingListService.editingIngredient.unsubscribe();
+    this.editingIngredientSubscription.unsubscribe();
   }
 
   submitForm(shoppingEditForm: NgForm) {

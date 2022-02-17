@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RecipeService } from 'src/app/services/recipe.service';
 import { Recipe } from '../../models/recipe.model';
 
@@ -6,7 +6,7 @@ import { Recipe } from '../../models/recipe.model';
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
-  providers: [RecipeService],
+  providers: [],
 })
 export class RecipesComponent implements OnInit {
   constructor(private recipeService: RecipeService) {}
