@@ -1,15 +1,19 @@
 <div class="container">
+  <div class="row col-2 mb-1">
+    <label for=""> Filter Status</label>
+    <input type="search" [(ngModel)]="filterStatus" />
+  </div>
   <div class="row col-10">
     <ul class="list-group">
       <li
         class="list-group-item"
-        *ngFor="let server of servers"
+        *ngFor="let server of servers | filter: filterStatus:'status'"
         [ngClass]="getStatusClasses(server)"
       >
         <div class="row">
           <div class="col">
             <strong data-bs-toggle="tooltip" [title]="server.name">{{
-              server.name | shorten: 5
+              server.name | shorten: 10
             }}</strong>
             | {{ server.instanceType | uppercase }} |
             {{ server.started | date: "fullDate" | uppercase }}
