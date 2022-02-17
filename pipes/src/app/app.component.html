@@ -9,7 +9,7 @@
         <div class="row">
           <div class="col">
             <strong data-bs-toggle="tooltip" [title]="server.name">{{
-              server.name | shorten
+              server.name | shorten: 5
             }}</strong>
             | {{ server.instanceType | uppercase }} |
             {{ server.started | date: "fullDate" | uppercase }}
