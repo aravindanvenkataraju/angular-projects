@@ -3,6 +3,10 @@
     <label for=""> Filter Status</label>
     <input type="search" [(ngModel)]="filterStatus" />
   </div>
+  <h2>App Status: {{ appStatus | async }}</h2>
+  <button class="btn btn-success m-1" (click)="createServer()">
+    add server
+  </button>
   <div class="row col-10">
     <ul class="list-group">
       <li

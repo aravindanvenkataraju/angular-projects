@@ -6,6 +6,11 @@ import { Component } from "@angular/core";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
+  appStatus = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("stable");
+    }, 2000);
+  });
   filterStatus: string;
   servers = [
     {
@@ -44,5 +49,41 @@ export class AppComponent {
       "list-group-item-warning": server.status === "offline",
       "list-group-item-danger": server.status === "critical",
     };
+  }
+  private getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+  createServer() {
+    let newServer = {
+      instanceType: "",
+      name: "",
+      status: "",
+      started: null,
+    };
+    switch (this.getRandomInt(3)) {
+      case 0:
+        newServer["instanceType"] = "small";
+        break;
+      case 1:
+        newServer["instanceType"] = "medium";
+        break;
+      case 2:
+        newServer["instanceType"] = "large";
+        break;
+      default:
+        newServer["instanceType"] = "small";
+        break;
+    }
+
+    if (this.getRandomInt(2) == 0) {
+      newServer["status"] = "offline";
+    } else {
+      newServer["status"] = "stable";
+    }
+
+    newServer["name"] =
+      "Server ID:" + (Math.random() + 1).toString(36).substring(7);
+    newServer["started"] = Date.now();
+    this.servers.push(newServer);
   }
 }
