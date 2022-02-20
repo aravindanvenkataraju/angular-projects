@@ -21,7 +21,7 @@ export class PostsService {
   }
 
   loadPosts() {
-    this.http
+    return this.http
       .get<{ [key: string]: Post }>(
         "https://aravindans-first-project-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json"
       )
@@ -34,9 +34,12 @@ export class PostsService {
           }
           return postsArray;
         })
-      )
-      .subscribe((posts) => {
-        console.log(posts);
-      });
+      );
+  }
+
+  deletePosts() {
+    return this.http.delete(
+      "https://aravindans-first-project-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json"
+    );
   }
 }
