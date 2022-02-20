@@ -12,14 +12,26 @@ import { PostsService } from "./posts.service";
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching = false;
+  errorMessage = null;
 
   constructor(private http: HttpClient, private postsService: PostsService) {}
 
   ngOnInit() {
     this.isFetching = true;
-    this.postsService.loadPosts().subscribe((posts) => {
-      this.loadedPosts = posts;
-      this.isFetching = false;
+    this.errorMessage = null;
+    this.postsService.loadPosts().subscribe({
+      next: (posts) => {
+        this.loadedPosts = posts;
+        this.isFetching = false;
+      },
+      error: (error) => {
+        console.log("error occured");
+        this.errorMessage = error.message;
+        this.isFetching = false;
+      },
+      complete: () => {
+        console.log("completes");
+      },
     });
   }
 
@@ -29,9 +41,20 @@ export class AppComponent implements OnInit {
 
   onFetchPosts() {
     this.isFetching = true;
-    this.postsService.loadPosts().subscribe((posts) => {
-      this.loadedPosts = posts;
-      this.isFetching = false;
+    this.errorMessage = null;
+    this.postsService.loadPosts().subscribe({
+      next: (posts) => {
+        this.loadedPosts = posts;
+        this.isFetching = false;
+      },
+      error: (error) => {
+        console.log("error occured");
+        this.errorMessage = error.message;
+        this.isFetching = false;
+      },
+      complete: () => {
+        console.log("completes");
+      },
     });
   }
 

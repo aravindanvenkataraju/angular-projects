@@ -75,4 +75,18 @@
       </ul>
     </div>
   </div>
+  <div
+    class="alert alert-danger alert-dismissible fade show position-absolute top-0 start-50 translate-middle-x"
+    role="alert"
+    *ngIf="errorMessage"
+  >
+    <strong>Holy guacamole!</strong>
+    <p>{{ errorMessage }}</p>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
 </div>
