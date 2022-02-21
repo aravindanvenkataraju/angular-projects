@@ -1,12 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map } from "rxjs";
+import { map, Subject, catchError, throwError } from "rxjs";
 import { Post } from "./post.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class PostsService {
+  error: Subject<string> = new Subject();
   constructor(private http: HttpClient) {}
 
   createPost(postData: Post) {
@@ -15,8 +16,13 @@ export class PostsService {
         "https://aravindans-first-project-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json",
         postData
       )
-      .subscribe((responseData) => {
-        console.log(responseData);
+      .subscribe({
+        next: (responseData) => {
+          console.log(responseData);
+        },
+        error: (error) => {
+          this.error.next(error.message);
+        },
       });
   }
 
@@ -33,6 +39,12 @@ export class PostsService {
               postsArray.push({ ...responseData[key], id: key });
           }
           return postsArray;
+        }),
+        catchError((error) => {
+          console.log(error);
+          return throwError(() => {
+            return error;
+          });
         })
       );
   }
