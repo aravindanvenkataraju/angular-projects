@@ -6,6 +6,7 @@ import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { RecipeResolverService } from './services/recipe-resolver.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'recipes', pathMatch: 'full' },
@@ -20,8 +21,16 @@ const appRoutes: Routes = [
         data: { message: 'Invalid Recipe! please select from the list' },
       },
       { path: 'new', component: RecipeEditComponent },
-      { path: ':id', component: RecipeDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent },
+      {
+        path: ':id',
+        component: RecipeDetailComponent,
+        resolve: [RecipeResolverService],
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent,
+        resolve: [RecipeResolverService],
+      },
     ],
   },
   { path: 'shopping-list', component: ShoppingListComponent },

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Subject } from 'rxjs';
+import { map, Subject, tap } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 
@@ -71,7 +71,7 @@ export class RecipeService {
   recipeChanged: Subject<Recipe> = new Subject();
 
   fetchRecipes() {
-    this.http
+    return this.http
       .get<Recipe[]>(
         'https://my-recipe-app-59056-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json'
       )
@@ -83,13 +83,12 @@ export class RecipeService {
               ingredients: recipe.ingredients ? recipe.ingredients : [],
             };
           });
+        }),
+        tap((responseData) => {
+          this.recipes = responseData;
+          this.recipeChanged.next(this.recipes[0]);
         })
-      )
-      .subscribe((responseData) => {
-        console.log(responseData);
-        this.recipes = responseData;
-        this.recipeChanged.next(this.recipes[0]);
-      });
+      );
   }
 
   storeRecipes() {
