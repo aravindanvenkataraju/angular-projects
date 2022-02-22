@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { map, Subject } from 'rxjs';
 import { Ingredient } from '../models/ingredient.model';
 import { Recipe } from '../models/recipe.model';
 
@@ -74,6 +74,16 @@ export class RecipeService {
     this.http
       .get<Recipe[]>(
         'https://my-recipe-app-59056-default-rtdb.asia-southeast1.firebasedatabase.app/recipes.json'
+      )
+      .pipe(
+        map((responseData) => {
+          return responseData.map((recipe) => {
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : [],
+            };
+          });
+        })
       )
       .subscribe((responseData) => {
         console.log(responseData);
