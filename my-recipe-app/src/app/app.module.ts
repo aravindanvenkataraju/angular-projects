@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app.routing.module';
 import { NoRecipesComponent } from './components/recipes/no-recipes/no-recipes.component';
 import { DisplayErrorComponent } from './components/display-error/display-error.component';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
     NoRecipesComponent,
     DisplayErrorComponent,
     RecipeEditComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
